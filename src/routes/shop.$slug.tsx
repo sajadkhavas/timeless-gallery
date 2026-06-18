@@ -2,6 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import { ProductCard } from "@/components/site/ProductCard";
+import { AssurancePanel } from "@/components/site/AssurancePanel";
+import { MaterialStory } from "@/components/site/MaterialStory";
 import { findProduct, PRODUCTS, formatToman } from "@/lib/data";
 
 export const Route = createFileRoute("/shop/$slug")({
@@ -17,6 +19,7 @@ export const Route = createFileRoute("/shop/$slug")({
       { property: "og:title", content: loaderData?.name ?? "نوا" },
       { property: "og:image", content: loaderData?.img ?? "" },
       { property: "og:type", content: "product" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: `/shop/${loaderData?.slug ?? ""}` }],
     scripts: loaderData
@@ -134,12 +137,9 @@ function ProductPage() {
                 </Link>
               </div>
 
-              <ul className="mt-10 grid grid-cols-1 gap-3 border-t border-hairline pt-8 text-xs text-foreground/65 sm:grid-cols-2">
-                <li>✓ ضمانت اصالت مادام‌العمر نوا</li>
-                <li>✓ ارسال بیمه‌شده در سراسر ایران</li>
-                <li>✓ امکان بازگشت تا ۷ روز</li>
-                <li>✓ دو سال گارانتی بین‌المللی</li>
-              </ul>
+              <div className="mt-10 border-t border-hairline pt-8">
+                <AssurancePanel compact />
+              </div>
             </div>
           </div>
 
@@ -198,6 +198,13 @@ function ProductPage() {
                 </ul>
               )}
             </div>
+          </div>
+
+          <div className="mt-12">
+            <p className="mb-5 text-[10px] uppercase tracking-[0.35em] text-primary">
+              Inside the watch
+            </p>
+            <MaterialStory />
           </div>
 
           {/* Reviews */}

@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { z } from "zod";
 import { PageShell, PageHeader } from "@/components/site/PageShell";
 import { ProductCard } from "@/components/site/ProductCard";
+import { SectionHeader } from "@/components/site/SectionHeader";
 import { PRODUCTS, COLLECTIONS } from "@/lib/data";
 
 const search = z.object({
@@ -21,6 +22,7 @@ export const Route = createFileRoute("/shop")({
       },
       { property: "og:title", content: "فروشگاه — نوا" },
       { property: "og:url", content: "/shop" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/shop" }],
   }),
@@ -60,6 +62,13 @@ function ShopPage() {
         crumbs={[{ label: "فروشگاه" }]}
       />
       <section className="px-6 py-16">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeader
+            eyebrow="Category experience"
+            title="انتخاب سریع، بدون حس فروشگاه ارزان."
+            description="فیلترها کوتاه و روشن‌اند؛ کارت‌ها با تصویر، موجودی و روایت کوتاه، تصمیم را سریع‌تر اما ممتاز نگه می‌دارند."
+          />
+        </div>
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[240px_1fr]">
           <aside className="space-y-10">
             <FilterBlock title="کالکشن">
