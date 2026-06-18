@@ -7,7 +7,10 @@ export const Route = createFileRoute("/compare")({
   head: () => ({
     meta: [
       { title: "مقایسه‌ی ساعت‌ها — نوا" },
-      { name: "description", content: "مقایسه‌ی فنی و ظاهری ساعت‌های لوکس برای انتخاب آگاهانه‌تر." },
+      {
+        name: "description",
+        content: "مقایسه‌ی فنی و ظاهری ساعت‌های لوکس برای انتخاب آگاهانه‌تر.",
+      },
       { property: "og:title", content: "مقایسه‌ی ساعت‌ها — نوا" },
       { property: "og:url", content: "/compare" },
     ],
@@ -34,7 +37,7 @@ function ComparePage() {
     if (slugs.length > 2) setSlugs(slugs.filter((_, idx) => idx !== i));
   }
 
-  const rows: Array<[string, (k: typeof items[number]) => string]> = [
+  const rows: Array<[string, (k: (typeof items)[number]) => string]> = [
     ["برند", (k) => k.brand],
     ["کالکشن", (k) => k.collectionLabel],
     ["قیمت (تومان)", (k) => formatToman(k.price)],
@@ -60,12 +63,18 @@ function ComparePage() {
           <table className="w-full min-w-[720px] border-collapse text-sm">
             <thead>
               <tr>
-                <th className="w-40 py-4 text-right text-[10px] uppercase tracking-[0.3em] text-primary"> </th>
+                <th className="w-40 py-4 text-right text-[10px] uppercase tracking-[0.3em] text-primary">
+                  {" "}
+                </th>
                 {items.map((p, i) => (
                   <th key={i} className="border-b border-hairline p-4 text-right align-top">
                     <div className="space-y-3">
                       <div className="overflow-hidden bg-surface">
-                        <img src={p.img} alt={p.name} className="aspect-[4/5] w-full object-cover" />
+                        <img
+                          src={p.img}
+                          alt={p.name}
+                          className="aspect-[4/5] w-full object-cover"
+                        />
                       </div>
                       <select
                         value={p.slug}
@@ -73,11 +82,16 @@ function ComparePage() {
                         className="w-full border border-hairline bg-transparent px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
                       >
                         {PRODUCTS.map((x) => (
-                          <option key={x.slug} value={x.slug} className="bg-background">{x.name}</option>
+                          <option key={x.slug} value={x.slug} className="bg-background">
+                            {x.name}
+                          </option>
                         ))}
                       </select>
                       {slugs.length > 2 && (
-                        <button onClick={() => removeAt(i)} className="text-[10px] uppercase tracking-[0.25em] text-foreground/45 hover:text-destructive">
+                        <button
+                          onClick={() => removeAt(i)}
+                          className="text-[10px] uppercase tracking-[0.25em] text-foreground/45 hover:text-destructive"
+                        >
                           حذف ستون
                         </button>
                       )}
@@ -86,7 +100,10 @@ function ComparePage() {
                 ))}
                 {slugs.length < 4 && (
                   <th className="border-b border-hairline p-4 align-top">
-                    <button onClick={addColumn} className="hairline w-full py-12 text-xs text-foreground/55 hover:text-primary">
+                    <button
+                      onClick={addColumn}
+                      className="hairline w-full py-12 text-xs text-foreground/55 hover:text-primary"
+                    >
                       + افزودن ساعت
                     </button>
                   </th>
@@ -96,9 +113,13 @@ function ComparePage() {
             <tbody>
               {rows.map(([k, fn]) => (
                 <tr key={k} className="border-b border-hairline">
-                  <td className="py-4 text-[10px] uppercase tracking-[0.25em] text-foreground/50">{k}</td>
+                  <td className="py-4 text-[10px] uppercase tracking-[0.25em] text-foreground/50">
+                    {k}
+                  </td>
                   {items.map((p, i) => (
-                    <td key={i} className="py-4 text-foreground/85">{fn(p)}</td>
+                    <td key={i} className="py-4 text-foreground/85">
+                      {fn(p)}
+                    </td>
                   ))}
                   {slugs.length < 4 && <td />}
                 </tr>

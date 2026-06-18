@@ -9,8 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompareRouteImport } from './routes/compare'
@@ -22,9 +24,15 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JournalIndexRouteImport } from './routes/journal.index'
+import { Route as ShopSlugRouteImport } from './routes/shop.$slug'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
@@ -33,6 +41,11 @@ const ShopRoute = ShopRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -90,6 +103,11 @@ const JournalIndexRoute = JournalIndexRouteImport.update({
   path: '/journal/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShopSlugRoute = ShopSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ShopRoute,
+} as any)
 const ProductSlugRoute = ProductSlugRouteImport.update({
   id: '/product/$slug',
   path: '/product/$slug',
@@ -112,10 +130,13 @@ export interface FileRoutesByFullPath {
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/search': typeof SearchRoute
   '/services': typeof ServicesRoute
-  '/shop': typeof ShopRoute
+  '/shop': typeof ShopRouteWithChildren
+  '/wishlist': typeof WishlistRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/shop/$slug': typeof ShopSlugRoute
   '/journal/': typeof JournalIndexRoute
 }
 export interface FileRoutesByTo {
@@ -129,10 +150,13 @@ export interface FileRoutesByTo {
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/search': typeof SearchRoute
   '/services': typeof ServicesRoute
-  '/shop': typeof ShopRoute
+  '/shop': typeof ShopRouteWithChildren
+  '/wishlist': typeof WishlistRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/shop/$slug': typeof ShopSlugRoute
   '/journal': typeof JournalIndexRoute
 }
 export interface FileRoutesById {
@@ -147,10 +171,13 @@ export interface FileRoutesById {
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/search': typeof SearchRoute
   '/services': typeof ServicesRoute
-  '/shop': typeof ShopRoute
+  '/shop': typeof ShopRouteWithChildren
+  '/wishlist': typeof WishlistRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/shop/$slug': typeof ShopSlugRoute
   '/journal/': typeof JournalIndexRoute
 }
 export interface FileRouteTypes {
@@ -166,10 +193,13 @@ export interface FileRouteTypes {
     | '/compare'
     | '/contact'
     | '/faq'
+    | '/search'
     | '/services'
     | '/shop'
+    | '/wishlist'
     | '/journal/$slug'
     | '/product/$slug'
+    | '/shop/$slug'
     | '/journal/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -183,10 +213,13 @@ export interface FileRouteTypes {
     | '/compare'
     | '/contact'
     | '/faq'
+    | '/search'
     | '/services'
     | '/shop'
+    | '/wishlist'
     | '/journal/$slug'
     | '/product/$slug'
+    | '/shop/$slug'
     | '/journal'
   id:
     | '__root__'
@@ -200,10 +233,13 @@ export interface FileRouteTypes {
     | '/compare'
     | '/contact'
     | '/faq'
+    | '/search'
     | '/services'
     | '/shop'
+    | '/wishlist'
     | '/journal/$slug'
     | '/product/$slug'
+    | '/shop/$slug'
     | '/journal/'
   fileRoutesById: FileRoutesById
 }
@@ -218,8 +254,10 @@ export interface RootRouteChildren {
   CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
+  SearchRoute: typeof SearchRoute
   ServicesRoute: typeof ServicesRoute
-  ShopRoute: typeof ShopRoute
+  ShopRoute: typeof ShopRouteWithChildren
+  WishlistRoute: typeof WishlistRoute
   JournalSlugRoute: typeof JournalSlugRoute
   ProductSlugRoute: typeof ProductSlugRoute
   JournalIndexRoute: typeof JournalIndexRoute
@@ -227,6 +265,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop': {
       id: '/shop'
       path: '/shop'
@@ -239,6 +284,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -318,6 +370,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JournalIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shop/$slug': {
+      id: '/shop/$slug'
+      path: '/$slug'
+      fullPath: '/shop/$slug'
+      preLoaderRoute: typeof ShopSlugRouteImport
+      parentRoute: typeof ShopRoute
+    }
     '/product/$slug': {
       id: '/product/$slug'
       path: '/product/$slug'
@@ -335,6 +394,16 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ShopRouteChildren {
+  ShopSlugRoute: typeof ShopSlugRoute
+}
+
+const ShopRouteChildren: ShopRouteChildren = {
+  ShopSlugRoute: ShopSlugRoute,
+}
+
+const ShopRouteWithChildren = ShopRoute._addFileChildren(ShopRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -346,8 +415,10 @@ const rootRouteChildren: RootRouteChildren = {
   CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
+  SearchRoute: SearchRoute,
   ServicesRoute: ServicesRoute,
-  ShopRoute: ShopRoute,
+  ShopRoute: ShopRouteWithChildren,
+  WishlistRoute: WishlistRoute,
   JournalSlugRoute: JournalSlugRoute,
   ProductSlugRoute: ProductSlugRoute,
   JournalIndexRoute: JournalIndexRoute,
@@ -355,3 +426,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

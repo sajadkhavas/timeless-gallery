@@ -6,7 +6,10 @@ export const Route = createFileRoute("/boutiques")({
   head: () => ({
     meta: [
       { title: "بوتیک‌های نوا — تهران، اصفهان، مشهد" },
-      { name: "description", content: "نشانی، تلفن و ساعات کاری بوتیک‌های فیزیکی گالری نوا در ایران." },
+      {
+        name: "description",
+        content: "نشانی، تلفن و ساعات کاری بوتیک‌های فیزیکی گالری نوا در ایران.",
+      },
       { property: "og:url", content: "/boutiques" },
     ],
     links: [{ rel: "canonical", href: "/boutiques" }],
@@ -41,7 +44,10 @@ function BoutiquesPage() {
                   <p>تلفن: {b.phone}</p>
                   <p>ساعات کاری: {b.hours}</p>
                 </div>
-                <a href={`tel:${b.phone}`} className="mt-2 inline-block border-b border-primary/40 pb-1 text-xs font-medium hover:border-primary">
+                <a
+                  href={`tel:${b.phone}`}
+                  className="mt-2 inline-block border-b border-primary/40 pb-1 text-xs font-medium hover:border-primary"
+                >
                   رزرو زمان بازدید
                 </a>
               </div>
