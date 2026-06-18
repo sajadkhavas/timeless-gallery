@@ -7,7 +7,10 @@ export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
       { title: "سؤالات متداول — نوا" },
-      { name: "description", content: "پاسخ پرسش‌های متداول درباره‌ی اصالت، گارانتی، ارسال و خدمات گالری نوا." },
+      {
+        name: "description",
+        content: "پاسخ پرسش‌های متداول درباره‌ی اصالت، گارانتی، ارسال و خدمات گالری نوا.",
+      },
       { property: "og:title", content: "سؤالات متداول — نوا" },
       { property: "og:url", content: "/faq" },
     ],
@@ -50,11 +53,13 @@ function FaqPage() {
                 className="flex w-full items-center justify-between gap-6 py-6 text-right"
               >
                 <span className="text-base font-medium text-foreground/90">{f.q}</span>
-                <span className={`text-primary transition-transform ${open === i ? "rotate-45" : ""}`}>+</span>
+                <span
+                  className={`text-primary transition-transform ${open === i ? "rotate-45" : ""}`}
+                >
+                  +
+                </span>
               </button>
-              {open === i && (
-                <p className="pb-6 text-sm leading-loose text-foreground/65">{f.a}</p>
-              )}
+              {open === i && <p className="pb-6 text-sm leading-loose text-foreground/65">{f.a}</p>}
             </div>
           ))}
         </div>

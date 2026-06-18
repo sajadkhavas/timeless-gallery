@@ -46,7 +46,10 @@ function CartPage() {
           {lines.length === 0 ? (
             <div className="hairline grid place-items-center gap-4 p-20 text-center">
               <p className="text-sm text-foreground/55">سبد خرید شما خالی است.</p>
-              <Link to="/shop" className="bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+              <Link
+                to="/shop"
+                className="bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+              >
                 مرور فروشگاه
               </Link>
             </div>
@@ -55,33 +58,62 @@ function CartPage() {
               <ul className="divide-y divide-hairline border-y border-hairline">
                 {lines.map((l) => (
                   <li key={l.p.slug} className="flex items-start gap-5 py-6">
-                    <Link to="/product/$slug" params={{ slug: l.p.slug }} className="block size-24 shrink-0 overflow-hidden bg-surface md:size-28">
+                    <Link
+                      to="/shop/$slug"
+                      params={{ slug: l.p.slug }}
+                      className="block size-24 shrink-0 overflow-hidden bg-surface md:size-28"
+                    >
                       <img src={l.p.img} alt={l.p.name} className="size-full object-cover" />
                     </Link>
                     <div className="min-w-0 flex-1">
-                      <p className="text-[10px] uppercase tracking-[0.25em] text-foreground/45">{l.p.brand}</p>
+                      <p className="text-[10px] uppercase tracking-[0.25em] text-foreground/45">
+                        {l.p.brand}
+                      </p>
                       <h3 className="mt-1 truncate text-base font-medium">{l.p.name}</h3>
                       <p className="mt-1 text-xs text-foreground/55">{l.p.collectionLabel}</p>
 
                       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                         <div className="inline-flex items-center border border-hairline">
-                          <button onClick={() => setQty(l.p.slug, l.qty - 1)} className="px-3 py-1.5 text-sm">−</button>
-                          <span className="w-8 text-center text-sm">{l.qty.toLocaleString("fa-IR")}</span>
-                          <button onClick={() => setQty(l.p.slug, l.qty + 1)} className="px-3 py-1.5 text-sm">+</button>
+                          <button
+                            onClick={() => setQty(l.p.slug, l.qty - 1)}
+                            className="px-3 py-1.5 text-sm"
+                          >
+                            −
+                          </button>
+                          <span className="w-8 text-center text-sm">
+                            {l.qty.toLocaleString("fa-IR")}
+                          </span>
+                          <button
+                            onClick={() => setQty(l.p.slug, l.qty + 1)}
+                            className="px-3 py-1.5 text-sm"
+                          >
+                            +
+                          </button>
                         </div>
-                        <button onClick={() => remove(l.p.slug)} className="text-[11px] uppercase tracking-[0.25em] text-foreground/50 hover:text-destructive">حذف</button>
+                        <button
+                          onClick={() => remove(l.p.slug)}
+                          className="text-[11px] uppercase tracking-[0.25em] text-foreground/50 hover:text-destructive"
+                        >
+                          حذف
+                        </button>
                       </div>
                     </div>
                     <div className="shrink-0 text-left">
-                      <p className="text-sm font-medium text-primary">{formatToman(l.p.price * l.qty)}</p>
-                      <p className="text-[10px] uppercase tracking-widest text-foreground/40">تومان</p>
+                      <p className="text-sm font-medium text-primary">
+                        {formatToman(l.p.price * l.qty)}
+                      </p>
+                      <p className="text-[10px] uppercase tracking-widest text-foreground/40">
+                        تومان
+                      </p>
                     </div>
                   </li>
                 ))}
               </ul>
 
               <aside className="hairline self-start p-6">
-                <p className="text-[10px] uppercase tracking-[0.35em] text-primary">خلاصه‌ی سفارش</p>
+                <p className="text-[10px] uppercase tracking-[0.35em] text-primary">
+                  خلاصه‌ی سفارش
+                </p>
                 <dl className="mt-6 space-y-3 text-sm">
                   <Row k="جمع کالاها" v={`${formatToman(sub)} تومان`} />
                   <Row k="هزینه‌ی ارسال" v={`${formatToman(shipping)} تومان`} />
@@ -94,18 +126,28 @@ function CartPage() {
                     placeholder="کد تخفیف"
                     className="flex-1 border border-hairline bg-transparent px-3 py-2 text-sm focus:border-primary focus:outline-none"
                   />
-                  <button className="border border-hairline px-4 py-2 text-xs hover:border-primary">اعمال</button>
+                  <button className="border border-hairline px-4 py-2 text-xs hover:border-primary">
+                    اعمال
+                  </button>
                 </div>
 
                 <div className="mt-6 flex items-baseline justify-between border-t border-hairline pt-4">
-                  <span className="text-xs uppercase tracking-[0.25em] text-foreground/55">مبلغ نهایی</span>
+                  <span className="text-xs uppercase tracking-[0.25em] text-foreground/55">
+                    مبلغ نهایی
+                  </span>
                   <span className="text-2xl font-medium text-primary">{formatToman(total)}</span>
                 </div>
 
-                <Link to="/checkout" className="mt-6 block bg-primary py-3 text-center text-sm font-medium text-primary-foreground hover:bg-primary/90">
+                <Link
+                  to="/checkout"
+                  className="mt-6 block bg-primary py-3 text-center text-sm font-medium text-primary-foreground hover:bg-primary/90"
+                >
                   ادامه به پرداخت
                 </Link>
-                <Link to="/shop" className="mt-3 block text-center text-xs text-foreground/55 hover:text-primary">
+                <Link
+                  to="/shop"
+                  className="mt-3 block text-center text-xs text-foreground/55 hover:text-primary"
+                >
                   ← ادامه‌ی خرید
                 </Link>
               </aside>
