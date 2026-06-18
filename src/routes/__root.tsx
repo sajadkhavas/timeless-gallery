@@ -76,16 +76,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "نوا — گالری ساعت‌های لوکس" },
-      { name: "description", content: "گالری «نوا»؛ مجموعه‌ای از نایاب‌ترین ساعت‌های مکانیکی و لوکس با ضمانت اصالت برای کلکسیونرهای ایرانی." },
+      {
+        name: "description",
+        content:
+          "گالری «نوا»؛ مجموعه‌ای از نایاب‌ترین ساعت‌های مکانیکی و لوکس با ضمانت اصالت برای کلکسیونرهای ایرانی.",
+      },
       { name: "author", content: "Nava Gallery" },
       { property: "og:title", content: "نوا — گالری ساعت‌های لوکس" },
-      { property: "og:description", content: "تجربه‌ی زمان در یک گالری دیجیتال؛ ساعت‌های کلکسیونی با ضمانت اصالت." },
+      {
+        property: "og:description",
+        content: "تجربه‌ی زمان در یک گالری دیجیتال؛ ساعت‌های کلکسیونی با ضمانت اصالت.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-    ],
+    links: [{ rel: "stylesheet", href: appCss }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -100,6 +105,12 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:right-4 focus:top-4 focus:z-[100] focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
+        >
+          پرش به محتوای اصلی
+        </a>
         {children}
         <Scripts />
       </body>

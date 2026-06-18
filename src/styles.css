@@ -38,15 +38,15 @@
 :root {
   --radius: 0.25rem;
   /* Luxury dark palette — deep charcoal, ivory, matte bronze */
-  --background: oklch(0.16 0.003 60);          /* #0c0c0c-ish deep charcoal */
-  --foreground: oklch(0.92 0.008 85);          /* ivory #e2e2dc */
-  --surface: oklch(0.21 0.004 60);             /* zinc-900 */
+  --background: oklch(0.16 0.003 60); /* #0c0c0c-ish deep charcoal */
+  --foreground: oklch(0.92 0.008 85); /* ivory #e2e2dc */
+  --surface: oklch(0.21 0.004 60); /* zinc-900 */
   --hairline: oklch(0.92 0.008 85 / 0.12);
   --card: oklch(0.21 0.004 60);
   --card-foreground: oklch(0.92 0.008 85);
   --popover: oklch(0.21 0.004 60);
   --popover-foreground: oklch(0.92 0.008 85);
-  --primary: oklch(0.68 0.07 75);              /* matte bronze #a88c5f */
+  --primary: oklch(0.68 0.07 75); /* matte bronze #a88c5f */
   --primary-foreground: oklch(0.16 0.003 60);
   --secondary: oklch(0.25 0.004 60);
   --secondary-foreground: oklch(0.92 0.008 85);
@@ -89,8 +89,14 @@
 }
 
 @keyframes reveal-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @utility reveal {

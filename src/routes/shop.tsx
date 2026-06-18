@@ -14,7 +14,11 @@ export const Route = createFileRoute("/shop")({
   head: () => ({
     meta: [
       { title: "فروشگاه — نوا" },
-      { name: "description", content: "مرور تمام ساعت‌های لوکس موجود در گالری نوا با فیلتر بر اساس کالکشن، جنسیت و قیمت." },
+      {
+        name: "description",
+        content:
+          "مرور تمام ساعت‌های لوکس موجود در گالری نوا با فیلتر بر اساس کالکشن، جنسیت و قیمت.",
+      },
       { property: "og:title", content: "فروشگاه — نوا" },
       { property: "og:url", content: "/shop" },
     ],

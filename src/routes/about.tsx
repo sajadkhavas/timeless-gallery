@@ -6,7 +6,11 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "درباره‌ی نوا — گالریِ زمان" },
-      { name: "description", content: "داستان برند نوا؛ از وسواس در گزینش قطعات تا ساختن تجربه‌ای ممتاز برای کلکسیونرهای ایرانی." },
+      {
+        name: "description",
+        content:
+          "داستان برند نوا؛ از وسواس در گزینش قطعات تا ساختن تجربه‌ای ممتاز برای کلکسیونرهای ایرانی.",
+      },
       { property: "og:title", content: "درباره‌ی نوا" },
       { property: "og:url", content: "/about" },
     ],
@@ -44,10 +48,9 @@ function AboutPage() {
               ما زمان را نمی‌فروشیم؛ روایتش می‌کنیم.
             </h2>
             <p className="text-pretty leading-loose text-foreground/65">
-              برای ما، ساعت بیش از یک ابزار است؛ شناسنامه‌ی شخصی شماست، همراه روزها،
-              امضای ساعت‌سازی است که در سکوت کار می‌کند، و امضای کسی است که آن را
-              بر مچ می‌بندد. ما با همین نگاه، تنها آثاری را برمی‌گزینیم که سزاوار
-              این هم‌نشینی باشند.
+              برای ما، ساعت بیش از یک ابزار است؛ شناسنامه‌ی شخصی شماست، همراه روزها، امضای ساعت‌سازی
+              است که در سکوت کار می‌کند، و امضای کسی است که آن را بر مچ می‌بندد. ما با همین نگاه،
+              تنها آثاری را برمی‌گزینیم که سزاوار این هم‌نشینی باشند.
             </p>
             <ul className="grid gap-4 pt-4 sm:grid-cols-2">
               {[
@@ -58,7 +61,9 @@ function AboutPage() {
               ].map((s) => (
                 <li key={s.v} className="hairline p-5">
                   <p className="text-2xl font-medium text-primary">{s.k}</p>
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.25em] text-foreground/50">{s.v}</p>
+                  <p className="mt-1 text-[11px] uppercase tracking-[0.25em] text-foreground/50">
+                    {s.v}
+                  </p>
                 </li>
               ))}
             </ul>

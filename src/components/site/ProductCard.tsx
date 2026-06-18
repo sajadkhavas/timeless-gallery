@@ -6,7 +6,7 @@ export function ProductCard({ p }: { p: Product }) {
   return (
     <article className="group flex flex-col">
       <Link
-        to="/product/$slug"
+        to="/shop/$slug"
         params={{ slug: p.slug }}
         className="relative mb-5 block overflow-hidden bg-surface outline outline-1 -outline-offset-1 outline-white/5"
       >
@@ -40,14 +40,10 @@ export function ProductCard({ p }: { p: Product }) {
         </div>
         <div className="shrink-0 text-left">
           {p.oldPrice && (
-            <p className="text-[11px] text-foreground/40 line-through">
-              {formatToman(p.oldPrice)}
-            </p>
+            <p className="text-[11px] text-foreground/40 line-through">{formatToman(p.oldPrice)}</p>
           )}
           <p className="text-sm font-medium text-primary">{formatToman(p.price)}</p>
-          <p className="mt-0.5 text-[10px] uppercase tracking-widest text-foreground/40">
-            تومان
-          </p>
+          <p className="mt-0.5 text-[10px] uppercase tracking-widest text-foreground/40">تومان</p>
         </div>
       </div>
     </article>

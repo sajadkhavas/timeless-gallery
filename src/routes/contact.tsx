@@ -6,7 +6,10 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "تماس با نوا" },
-      { name: "description", content: "راه‌های ارتباط با گالری نوا؛ تلفن، واتساپ، آدرس آتلیه و فرم تماس." },
+      {
+        name: "description",
+        content: "راه‌های ارتباط با گالری نوا؛ تلفن، واتساپ، آدرس آتلیه و فرم تماس.",
+      },
       { property: "og:title", content: "تماس با نوا" },
       { property: "og:url", content: "/contact" },
     ],
@@ -31,17 +34,22 @@ function ContactPage() {
           <aside className="space-y-8">
             <InfoBlock title="آتلیه‌ی تهران">
               خیابان فرشته، ساختمان آریا، طبقه‌ی اول
-              <br />تلفن: ۰۲۱-۲۲۰۰۰۰۰۰
-              <br />واتساپ: ۰۹۱۲۰۰۰۰۰۰۰
+              <br />
+              تلفن: ۰۲۱-۲۲۰۰۰۰۰۰
+              <br />
+              واتساپ: ۰۹۱۲۰۰۰۰۰۰۰
             </InfoBlock>
             <InfoBlock title="ساعات کاری">
               شنبه تا چهارشنبه: ۱۰ تا ۲۰
-              <br />پنج‌شنبه: ۱۰ تا ۱۸
-              <br />جمعه: تعطیل
+              <br />
+              پنج‌شنبه: ۱۰ تا ۱۸
+              <br />
+              جمعه: تعطیل
             </InfoBlock>
             <InfoBlock title="شبکه‌های اجتماعی">
               Instagram: @nava.gallery
-              <br />Telegram: @navagallery
+              <br />
+              Telegram: @navagallery
             </InfoBlock>
 
             <div className="hairline aspect-video w-full bg-surface">
@@ -52,7 +60,10 @@ function ContactPage() {
           </aside>
 
           <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSent(true);
+            }}
             className="hairline space-y-5 p-8"
           >
             <p className="text-[10px] uppercase tracking-[0.4em] text-primary">فرم تماس</p>
@@ -65,7 +76,9 @@ function ContactPage() {
             <Field label="ایمیل" name="email" type="email" />
             <Field label="موضوع" name="subject" />
             <div>
-              <label className="mb-2 block text-[11px] uppercase tracking-[0.25em] text-foreground/55">پیام</label>
+              <label className="mb-2 block text-[11px] uppercase tracking-[0.25em] text-foreground/55">
+                پیام
+              </label>
               <textarea
                 rows={5}
                 className="w-full border border-hairline bg-transparent p-3 text-sm focus:border-primary focus:outline-none"
@@ -76,7 +89,9 @@ function ContactPage() {
               ارسال پیام
             </button>
             {sent && (
-              <p className="text-xs text-primary">پیام شما دریافت شد. تیم نوا در اولین فرصت پاسخ خواهد داد.</p>
+              <p className="text-xs text-primary">
+                پیام شما دریافت شد. تیم نوا در اولین فرصت پاسخ خواهد داد.
+              </p>
             )}
           </form>
         </div>
@@ -97,7 +112,12 @@ function InfoBlock({ title, children }: { title: string; children: React.ReactNo
 function Field({ label, name, type = "text" }: { label: string; name: string; type?: string }) {
   return (
     <div>
-      <label htmlFor={name} className="mb-2 block text-[11px] uppercase tracking-[0.25em] text-foreground/55">{label}</label>
+      <label
+        htmlFor={name}
+        className="mb-2 block text-[11px] uppercase tracking-[0.25em] text-foreground/55"
+      >
+        {label}
+      </label>
       <input
         id={name}
         name={name}
