@@ -207,6 +207,23 @@ function ProductPage() {
   );
 }
 
+function OptionRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-foreground/50">{label}</p>
+      <div className="flex flex-wrap gap-2">{children}</div>
+    </div>
+  );
+}
+
+function OptionPill({ children, active }: { children: React.ReactNode; active?: boolean }) {
+  return (
+    <button className={`border px-4 py-2 text-xs transition-colors ${active ? "border-primary text-primary" : "border-hairline text-foreground/70 hover:border-foreground/40"}`}>
+      {children}
+    </button>
+  );
+}
+
 function Gallery({ img, alt }: { img: string; alt: string }) {
   const [active, setActive] = useState(0);
   const imgs = [img, img, img, img];
